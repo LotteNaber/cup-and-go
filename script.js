@@ -1,20 +1,30 @@
-// Handle successful scan
-function onScanSuccess(decodedText, decodedResult) {
-    // Show the scanned result
+document.addEventListener("DOMContentLoaded", async () => {
+  const qr = new Html5Qrcode("qr-reader");
+
+  const config = {
+    fps: 10,
+    qrbox: 250,
+    experimentalFeatures: {
+      useBarCodeDetectorIfSupported: true
+    },
+    videoConstraints: {
+      facingMode: "environment",
+      focusMode: "continuous",
+      advanced: [{ focusMode: "continuous" }]
+    }
+  };
+
+  function onScanSuccess(decodedText) {
     document.getElementById("qr-result").innerText = `Scanned: ${decodedText}`;
-  
-    // If the QR code contains a URL, redirect
     if (decodedText.startsWith("http")) {
       window.location.href = decodedText;
     }
   }
-  
-  // Initialize the QR scanner once the page is ready
-  document.addEventListener("DOMContentLoaded", () => {
-    const qrScanner = new Html5QrcodeScanner("qr-reader", {
-      fps: 10,
-      qrbox: 250
-    });
-    qrScanner.render(onScanSuccess);
-  
-  });
+
+  try {
+    await qr.start({ facingMode: "environment" }, config, onScanSuccess);
+  } catch (err) {
+    console.error("Camera start failed:", err);
+  }
+});
+

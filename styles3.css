@@ -314,7 +314,6 @@ body::after {
     height: 60px;
   }
 
-  /* Mobiele navbar */
   .sidebar {
     width: auto;
     height: 80px;
@@ -323,6 +322,8 @@ body::after {
     transform: translateX(50%);
     padding: 0 20px;
     border-radius: 40px;
+    align-items: center;
+    justify-content: center;
   }
 
   .sidebar:hover {

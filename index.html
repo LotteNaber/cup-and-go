@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cup & Go - Landing Page</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- pwa manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#333333">
+</head>
+
+<body>
+
+  <div class="logo-stripe"></div>
+  <img src="landingpage.logo.png" alt="Cup & Go Logo" class="landing-logo">
+
+    <div class="landing-card">
+
+    <h1>Scan de QR code op de Truck om te bestellen:</h1>
+
+    <!-- QR Scanner -->
+    <div id="qr-reader"></div>
+    <div id="qr-result"></div>
+
+    <!-- Fallback button -->
+    <a href="menu.html" class="fallback-btn">Open Menu Handmatig</a>
+
+  </div>
+
+  <!-- qr scanner Library bron video tutrial die ik heb gevolgt:https://www.youtube.com/watch?v=19eo39lqpLM -->
+  <script src="https://unpkg.com/html5-qrcode/html5-qrcode.min.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js")
+        .then(() => console.log("Service Worker registered"))
+        .catch(err => console.error("SW registration failed:", err));
+    }
+  </script>
+
+</body>
+</html>

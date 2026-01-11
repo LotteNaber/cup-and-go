@@ -1,0 +1,375 @@
+body {
+  margin: 0;
+  background: #ffffff;
+  font-family: sans-serif;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 60px;
+}
+
+/* Product info links */
+.product-column {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
+.product-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #5F423E;
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+
+.product-image {
+  display: block;
+  width: 440px;
+  margin-top: 40px;
+}
+
+/* Tekstblok rechts */
+.content {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #070334;
+  position: absolute;
+  top: 120px;
+  right: 0;
+  width: 36%;
+  margin: 0 40px;
+  text-align: center;
+  z-index: 1;
+  transform: translateX(-30px);
+}
+
+.text {
+  padding: 30px;
+}
+
+/* Bestel-slider rechts */
+.slider {
+  width: 40%;
+  background: #63cadf;
+  border-radius: 30px;
+  position: absolute;
+  top: 120px;
+  right: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  transform: translateX(-30px);
+  transition: top 0.6s ease;
+}
+
+.slider.open {
+  top: 500px;
+}
+
+/* Pijl om slider te openen */
+.arrow-circle {
+  width: 80px;
+  height: 80px;
+  background: #63cadf;
+  border-radius: 50%;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow {
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 28px solid #ffffff;
+  transition: transform 0.6s ease;
+}
+
+.slider.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* Bestelopties */
+.slider-text {
+  font-size: 20px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.size-row,
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 80%;
+}
+
+.size-row select,
+.option-row select {
+  flex: 1;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+}
+
+.size-row label,
+.option-row label {
+  font-size: 18px;
+  color: #fff;
+}
+
+#sizeSelect,
+#milkSelect,
+#shotSelect,
+#flavorSelect,
+#tempSelect {
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+}
+
+#priceDisplay {
+  font-size: 20px;
+  font-weight: bold;
+  color: #070334;
+}
+
+#addToCartBtn {
+  font-size: 22px;
+  padding: 15px 40px;
+  background-color: #003366;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#addToCartBtn:hover {
+  background-color: #002244;
+}
+
+/* bestelling melding */
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #003366;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 18px;
+}
+
+.toast.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+/* Sidebar navigatie */
+.sidebar {
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  width: 80px;
+  height: 80px;
+  background-color: #5F423E;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 999;
+}
+
+.sidebar:hover {
+  height: 300px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+  transform: translateY(-10px);
+}
+
+.sidebar ul li img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.sidebar ul li img:hover {
+  transform: scale(1.1);
+}
+
+.sidebar ul li.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar:hover ul li.hidden {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Extra ruimte onderaan */
+body::after {
+  content: "";
+  display: block;
+  height: 600px;
+}
+
+/* Mobiele layout */
+@media (max-width: 799px) {
+  body {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .product-column {
+    margin-left: 0;
+  }
+
+  .product-title {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+
+  .product-image {
+    width: 65%;
+    margin: 10px auto;
+  }
+
+  .content {
+    position: relative;
+    width: 80%;
+    margin: -70px auto 0 auto;
+    font-size: 16px;
+    transform: none;
+  }
+
+  .text {
+    padding: 10px;
+  }
+
+  .slider {
+    top: 450px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    min-height: 70vh;
+    border-radius: 30px;
+  }
+
+  .slider.open {
+    top: 800px;
+  }
+
+  .slider-text {
+    padding: 20px;
+  }
+
+  .arrow-circle {
+    top: -30px;
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Mobiele navbar */
+  .sidebar {
+    width: auto;
+    height: 80px;
+    bottom: 30px;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 0 20px;
+    border-radius: 40px;
+  }
+
+  .sidebar:hover {
+    height: 80px;
+  }
+
+  .sidebar ul {
+    flex-direction: row;
+    gap: 40px;
+    transform: translateY(0);
+    padding: 0;
+    height: auto;
+  }
+
+  .sidebar ul li.hidden {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sidebar:hover ul li.hidden {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Kleinere opties op mobiel */
+  .size-row label,
+  .option-row label {
+    font-size: 14px;
+  }
+
+  .size-row select,
+  .option-row select,
+  #sizeSelect,
+  #milkSelect,
+  #shotSelect,
+  #flavorSelect,
+  #tempSelect {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  #addToCartBtn {
+    font-size: 18px;
+    padding: 10px 25px;
+  }
+
+  #priceDisplay {
+    font-size: 16px;
+  }
+}

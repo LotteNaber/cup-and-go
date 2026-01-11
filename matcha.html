@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matcha latte Order</title>
+  <link rel="stylesheet" href="styles3.css">
+</head>
+<body>
+
+  <div class="product-column">
+    <h1 class="product-title" id="drinkName">Matcha Latte</h1>
+    <img src="matcha.png" alt="Matcha latte" class="product-image">
+  </div>
+
+  <div class="content">
+    <div class="text">
+      <p>
+        Onze Matcha Latte biedt een zachte balans tussen energie en rust. Fijngemalen groene theebladeren van hoge kwaliteit worden gemengd met romige melk naar keuze. Het resultaat is een subtiel, aards drankje met lichte zoetheid dat je dag een natuurlijke boost geeft.
+      </p>
+    </div>
+  </div>
+
+  <div class="slider" id="slider">
+    <div class="arrow-circle" id="toggleBtn">
+      <div class="arrow"></div>
+    </div>
+
+    <!-- Ordering widget -->
+    <div class="slider-text">
+
+      <!-- Warm/koud -->
+      <div class="size-row">
+    
+        <label><input type="radio" name="temp" value="warm" checked> Warm</label>
+        <label><input type="radio" name="temp" value="koud"> Koud</label>
+      </div>
+
+      <!-- Maat -->
+      <div class="size-row">
+        <label for="sizeSelect"><strong>Kies een maat:</strong></label>
+        <select id="sizeSelect">
+          <option value="klein" data-price="3.20">Klein</option>
+          <option value="medium" data-price="4.50">Medium</option>
+          <option value="groot" data-price="5.80">Groot</option>
+        </select>
+      </div>
+
+      <!-- Melksoort -->
+      <div class="size-row">
+        <label for="milkSelect"><strong>Melksoort:</strong></label>
+        <select id="milkSelect">
+          <option value="volle melk">Volle melk</option>
+          <option value="halfvolle melk">Halfvolle melk</option>
+          <option value="havermelk">Havermelk</option>
+          <option value="amandelmelk">Amandelmelk</option>
+          <option value="sojamelk">Sojamelk</option>
+          <option value="lactosevrije melk">Lactosevrije melk</option>
+        </select>
+      </div>
+
+      <!-- Espresso shots -->
+      <div class="size-row">
+        <label for="shotSelect"><strong>Shotjes espresso:</strong></label>
+        <select id="shotSelect">
+          <option value="1" data-extra="0">0 shot</option>
+          <option value="2" data-extra="1">1 shots (+€1)</option>
+
+        </select>
+      </div>
+
+      <!-- Extra smaakje -->
+      <div class="size-row">
+        <label for="flavorSelect"><strong>Extra smaakje:</strong></label>
+        <select id="flavorSelect">
+          <option value="geen" data-extra="0">Geen</option>
+          <option value="vanille" data-extra="0.50">Vanille (+€0.50)</option>
+          <option value="hazelnoot" data-extra="0.50">Hazelnoot (+€0.50)</option>
+          <option value="chocolade" data-extra="0.50">Chocolade (+€0.50)</option>
+        </select>
+      </div>
+
+      <p id="priceDisplay"></p>
+      <button id="addToCartBtn">Bestellen</button>
+    </div>
+  </div>
+
+  <!-- bestelling popup -->
+  <div id="toast" class="toast"></div>
+
+  <!-- navbar -->
+  <nav class="sidebar">
+    <ul>
+      <li class="home"><a href="index.html"><img src="home.png" alt="Home"></a></li>
+      <li class="hidden"><a href="menu.html"><img src="menu.png" alt="Menu"></a></li>
+      <li class="hidden"><a href="allergy.html"><img src="allergy.png" alt="Allergies"></a></li>
+      <li class="hidden"><a href="checkout.html"><img src="checkout.png" alt="Checkout"></a></li>
+    </ul>
+  </nav>
+
+  <script src="script3.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(to bottom, #7fd1e1, #ffffff);
+  color: #070334;
+  overflow-x: hidden;
+}
+
+/* Bovenbalk met logo + titel + zoekbalk */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  margin: 20px auto;
+  box-sizing: border-box;
+  padding-right: 20px;
+
+  .left-side {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .logo {
+      width: 55px;
+      height: auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      color: #354497;
+    }
+  }
+
+  .search-container {
+    width: 300px;
+    margin-right: 10px;
+
+    #searchInput {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #63cadf;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+  }
+}
+
+/* Grid met alle menu items */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  .menu-item {
+    background: #fff;
+    border: 2px solid #87CEFA;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    p {
+      margin-top: 14px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #070334;
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+/* Zwevende sidebar navbar rechts onder */
+.sidebar {
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  width: 80px;
+  height: 80px;
+  background-color: #5F423E;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  /* Sidebar wordt hoger bij hover */
+  &:hover {
+    height: 300px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+    height: 100%;
+    transform: translateY(-10px);
+
+    li {
+      /* Verborgen items die pas zichtbaar worden bij hover */
+      &.hidden {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      img {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  /* Toon verborgen items bij hover */
+  &:hover ul li.hidden {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobiele layout aanpassingen */
+@media (max-width: 800px) {
+
+  /* Topbar wordt gestapeld */
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+
+    .left-side {
+      flex-direction: column;
+      align-items: center;
+      order: 1;
+
+      h1 {
+        font-size: 50px;
+        margin-bottom: 10px;
+      }
+
+      .logo {
+        width: 70px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .search-container {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto 20px;
+      text-align: center;
+
+      #searchInput {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+  }
+
+  /* Menu items onder elkaar */
+  .menu-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 25px;
+    padding: 0;
+
+    .menu-item {
+      max-width: 250px;
+      width: 100%;
+
+      img {
+        max-width: 100%;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+
+  /* Mobiele versie navbar  */
+  .sidebar {
+    width: auto;
+    height: 80px;
+    bottom: 30px;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 0 20px;
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+
+    /* Geen hover uitklappen op mobiel */
+    &:hover {
+      height: 80px;
+    }
+
+    ul {
+      flex-direction: row;
+      gap: 40px;
+      transform: translateY(0);
+      padding: 0;
+      height: auto;
+
+      li.hidden {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    &:hover ul li.hidden {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Extra ruimte onderaan zodat navbar niet over content valt */
+body::after {
+  content: "";
+  display: block;
+  height: 120px;
+}
